@@ -1,0 +1,32 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "debug-ftpfetch-npm-run",
+			"cwd": "${workspaceFolder}/fetch-ftp",
+			"runtimeExecutable": "npm",
+			"runtimeArgs": [
+				"run-script",
+				"debug-ftpfetch"
+			],
+			"port": 9229,
+			"sourceMaps": true
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "debug-ftpfetch",
+			"protocol": "inspector",
+			"runtimeExecutable": "node",
+			"program": "${workspaceRoot}/fetch-ftp/node_modules/.bin/serverless",
+			"args": [
+				"invoke",
+				"local",
+				"-f",
+				"ftpfetch"
+			]
+		}
+	]
+}

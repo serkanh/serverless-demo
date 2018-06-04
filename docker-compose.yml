@@ -1,11 +1,16 @@
 version: '2'
 services:
-  pure-ftpd:
-    image: vimagick/pure-ftpd
+  ftpd:
+    image: fauria/vsftpd
     ports:
-      - "21:21"
+     - "21:21"
+     - "20:20"
+     - "21100-21110:21100-21110"
     volumes:
-      - ./data/ftpuser:/home/ftpuser
-      - ./data/pure-ftpd:/etc/pure-ftpd
+      - "./data/data:/home/vsftpd"
+      - "./data/log:/var/log/vsftpd"
     privileged: true
-    restart: always
+    environment:
+      - "FTP_USER=serkan"
+      - "FTP_PASS=1234"
+

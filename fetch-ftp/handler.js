@@ -1,16 +1,37 @@
 'use strict';
 
-module.exports.hello = (event, context, callback) => {
-  const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
-  };
 
-  callback(null, response);
+const ftp = require("basic-ftp")
+const fs = require("fs")
+const connParams = {
+	host: "localhost",
+	user: "serkan",
+	password: "1234",
+	secure: false
+}
 
-  // Use this code if you don't use the http event with the LAMBDA-PROXY integration
-  // callback(null, { message: 'Go Serverless v1.0! Your function executed successfully!', event });
+
+module.exports.ftpupload = async (event, context, callback) => {
+	const client = new ftp.Client()
+	try {
+		await client.access(connParams)
+		console.log(await client.list())
+		await client.upload(fs.createReadStream(".gitignore"), "gitignore")
+	} catch (err) {
+		console.log(err)
+	}
+	client.close()
+};
+
+
+module.exports.ftpdownload = async (event, context, callback) => {
+	const client = new ftp.Client()
+	try {
+		await client.access(connParams)
+		console.log(await client.list())
+		await client.download(fs.createWriteStream("downloaded-README.md"), "README.md")
+	} catch (err) {
+		console.log(err)
+	}
+	client.close()
 };
