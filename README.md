@@ -4,13 +4,12 @@
 ![file](imgs/docker-compose-up.gif)
 
 3. Open a new shell session and issue `docker ps` to determine the container id of the ftp server. 
+![file](imgs/docker-ps.gif)
 
-![file](imgs/docker-ps.gif)]
 4. Copy the container id and run `docker exec -it <contianer-id> /bin/bash`. This will allow you to open a shell session inside the ftp docker container. 
 ![file](imgs/docker-exec-it.gif)
 
 5. Within the container issue the following command `pure-pw useradd shaytac -m -u ftpuser -d /home/ftpusers/shaytac` to create an ftp user, make sure to have the pass noted. This will create 2 folders in `./data` directory so next time you `docker-compose up` you will not need to create user again.
-
 ![file](imgs/enter-ftp-pass.gif)]
 
 ps: this folder will be .gitignored 
