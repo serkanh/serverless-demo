@@ -7,12 +7,12 @@
 			"name": "debug-ftpfetch-npm-run",
 			"cwd": "${workspaceFolder}/fetch-ftp",
 			"runtimeExecutable": "npm",
+			"protocol": "inspector",
 			"runtimeArgs": [
-				"run-script",
-				"debug-ftpfetch"
+				"run-script",	"debug-ftpdownload"
 			],
 			"port": 9229,
-			"sourceMaps": true
+	//		"sourceMaps": true
 		},
 		{
 			"type": "node",
@@ -25,7 +25,7 @@
 				"invoke",
 				"local",
 				"-f",
-				"ftpfetch"
+				"ftpdownload"
 			]
 		}
 	]
